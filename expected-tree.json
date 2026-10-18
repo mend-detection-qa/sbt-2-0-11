@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-10-18T00:00:00Z",
+  "packages": {
+    "commons-codec": {
+      "dependencies": [],
+      "group": "main",
+      "source": "private-index",
+      "source_detail": {
+        "groupId": "commons-codec",
+        "resolver": "Custom Releases",
+        "resolverUrl": "https://repo.example.com/maven2/"
+      },
+      "version": "1.17.0"
+    },
+    "logback-classic": {
+      "dependencies": [
+        "logback-core",
+        "slf4j-api"
+      ],
+      "group": "main",
+      "source": "registry",
+      "source_detail": {
+        "groupId": "ch.qos.logback",
+        "resolver": "Maven Central Explicit",
+        "resolverUrl": "https://repo1.maven.org/maven2/"
+      },
+      "version": "1.5.6"
+    },
+    "logback-core": {
+      "dependencies": [],
+      "group": "main",
+      "source": "registry",
+      "source_detail": {
+        "groupId": "ch.qos.logback",
+        "resolver": "Maven Central Explicit",
+        "resolverUrl": "https://repo1.maven.org/maven2/"
+      },
+      "version": "1.5.6"
+    },
+    "slf4j-api": {
+      "dependencies": [],
+      "group": "main",
+      "source": "registry",
+      "source_detail": {
+        "groupId": "org.slf4j",
+        "resolver": "Maven Central Explicit",
+        "resolverUrl": "https://repo1.maven.org/maven2/"
+      },
+      "version": "2.0.13"
+    }
+  },
+  "pm": "sbt",
+  "pm_version_tested": "2.0.11",
+  "pm_version_under_test": "2.0.11",
+  "root": {
+    "dependencies": [
+      "slf4j-api",
+      "logback-classic",
+      "commons-codec"
+    ],
+    "name": "sbt-resolvers-m2-settings-override-probe",
+    "version": "0.1.0-SNAPSHOT"
+  },
+  "schema_version": "1.2",
+  "source_file": "build.sbt",
+  "warnings": [
+    "commons-codec 1.17.0 is published on Maven Central but is attributed to source: private-index in this probe because it is declared under the 'Custom Releases' resolver entry to exercise resolver-ordering. If UA resolves it from Maven Central before reaching the custom resolver, source attribution may differ.",
+    "slf4j-api 2.0.13 appears as both a direct dependency and a transitive dependency of logback-classic 1.5.6. Coursier highest-wins eviction resolves both to 2.0.13 (no version change). The package appears once in the flat packages map with logback-classic referencing it.",
+    "scala-library is excluded from the expected tree per UA behavior (org.scala-lang:scala-library always excluded by Mend SBT resolver)."
+  ]
+}
